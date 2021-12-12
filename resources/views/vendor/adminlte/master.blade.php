@@ -77,6 +77,7 @@
 
     {{-- Body Content --}}
     @yield('body')
+    @include('sweetalert::alert')
 
     {{-- Base Scripts --}}
     @if(!config('adminlte.enabled_laravel_mix'))

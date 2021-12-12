@@ -1,0 +1,53 @@
+/* Body-style */
+body{
+    margin: 0px;
+}
+
+
+/* headder-style */
+.header-section {
+    background-color: #264653 !important;
+}
+
+
+/* main-section-style */
+.dark-orange{
+    color: #E76F51;
+}
+
+.mr-right-0 {
+    margin-right: 0 !important;
+  }
+
+
+.margin-y{
+    margin-top: 50px;
+}
+.lw-section{
+    margin-top: 150px;
+}
+.hpc-section{
+    margin-top: 150px;
+}
+
+.top-seller{
+    margin-top: 150px;
+}
+.faq-section{
+    margin-top: 150px;
+    height: 491px;
+    width: 100%;
+}
+.subscribe{
+    margin-top: 150px;
+    background-color: #6aa0b4;
+    height: 400px
+}
+
+
+/* footer-stylw */
+.footer-section{
+    background-color:#0B0D17;
+    margin-top: 50px;
+    padding: 50px;
+}

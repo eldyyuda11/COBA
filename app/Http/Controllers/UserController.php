@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -27,6 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
+
         return view('users.create');
     }
 
@@ -100,7 +103,7 @@ class UserController extends Controller
         if ($request->password) $user->password = bcrypt($request->password);
         $user->save();
         return redirect()->route('users.index')
-            ->with('success_message', 'Berhasil mengubah user');
+            ->with('success', 'Berhasil mengubah user');
     }
 
     /**
@@ -113,9 +116,9 @@ class UserController extends Controller
     {
         $user = User::find($id);
         if ($id == $request->user()->id) return redirect()->route('users.index')
-            ->with('error_message', 'Anda tidak dapat menghapus diri sendiri.');
+            ->with('error', 'Anda tidak dapat menghapus diri sendiri.');
         if ($user) $user->delete();
         return redirect()->route('users.index')
-            ->with('success_message', 'Berhasil menghapus user');
+            ->with('success', 'Berhasil menghapus user');
     }
 }
