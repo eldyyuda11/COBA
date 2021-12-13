@@ -71,10 +71,10 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'stories' => [
+            'driver' => 'eloquent',
+            'model' =>  App\Models\Stories::class,
+        ],
     ],
 
     /*

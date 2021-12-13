@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
 
@@ -41,18 +42,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+
+        $validate = $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|confirmed'
+            'password' => 'required|confirmed',
+            'image_profile' =>'file|image|mimes:jpeg,jpg,png|max:5120'
         ]);
-        $array = $request->only([
-            'name', 'email', 'password'
-        ]);
-        $array['password'] = bcrypt($array['password']);
-        $user = User::create($array);
+        $request->file('image_profile') ?  $validate['image_profile'] = $request->file('image_profile')->store('profile-image') : null;
+
+        // $array = $request->only([
+        //     'name', 'email', 'password', 'image_profile'
+        // ]);
+
+        $validate['password'] = bcrypt($validate['password']);
+
+        $user = User::create($validate);
         return redirect()->route('users.index')
-            ->with('success_message', 'Berhasil menambah user baru');
+            ->with('success', 'Berhasil menambah user baru');
 
     }
 
@@ -115,10 +122,11 @@ class UserController extends Controller
     public function destroy(Request $request, $id)
     {
         $user = User::find($id);
-        if ($id == $request->user()->id) return redirect()->route('users.index')
+        if ($id == $request->user()->id)
+            return redirect()->route('users.index')
             ->with('error', 'Anda tidak dapat menghapus diri sendiri.');
         if ($user) $user->delete();
-        return redirect()->route('users.index')
+             return redirect()->route('users.index')
             ->with('success', 'Berhasil menghapus user');
     }
 }

@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yellowtail&display=swap');
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+a:hover{
+    color: orangered;
+}
+.top-nav{
+    box-shadow: orangered;
+}
+input[type=search]{
+    width: 300px;
+}
+.navbar-brand{
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: larger;
+    font-family: 'Yellowtail', cursive;
+}
+
+.logo{
+    padding: 5px;
+}
+
+.logo a{
+    color:orangered;
+    text-decoration: none;
+    font-size: large;
+}
+
+.side-nav{
+    width: 20vw;
+    height: 94vh;  
+}
+.side-nav-menu{
+    position: absolute;
+    margin-top: 6vh;
+}
+
+.side-nav-menu ul li{
+    padding: 20px;
+}
+.main{
+    background-color: orangered;
+    width: 80vw;
+    height: 94vh;
+    margin-left: 20vw;
+    margin-top: -94vh;
+}
+.card{
+    background-color: #fff;
+    height: 10vh;
+    width: 20vw;
+    margin: 20px;
+    border-radius: 15px;
+}
+.card-group{
+    display: flex;
+    padding-right: 20px;
+}
+.menu-info{
+    padding: 20px;
+}
+.profile a{
+    display: flex;
+    align-content: center;
+}
+.sideMenu a{
+    display: flex;
+    align-content: center;
+}
+.sideMenu a i{
+    margin-left: 10px;
+}
+.sidebar ul li:hover{
+    background-color: rgb(236, 236, 235);
+}

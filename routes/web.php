@@ -30,14 +30,18 @@ Auth::routes();
 
     Route::middleware(['auth'])->group(function () {
         Route::get('/home',[HomeController::class,'index'])->name('home');
-
+        Route::post('/logoutpenulis',[HomeController::class,'logout'])->name('logoutpenulis');
         Route::middleware(['admin'])->group(function () {
-        Route::resource('users', \App\Http\Controllers\UserController::class);
+            Route::resource('users', \App\Http\Controllers\UserController::class);
+            Route::get('homeadmin',function () {
+                     return view('homeadmin');})->name('homeadmin');
         Route::resource('homeadmin', \App\Http\Controllers\AdminController::class);
+        });
 
+        Route::middleware(['penulis'])->group(function () {
+             Route::resource('homepenulis', \App\Http\Controllers\PenulisController::class);
 
-
-    });
+        });
 
 
 

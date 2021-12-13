@@ -36,8 +36,7 @@ class HomeController extends Controller
 
     }
     public function logout(request $request){
-        $request->session()->forget('cart');
-        Auth::logout();
+             Auth::logout();
             return redirect('login');
     }
 }
