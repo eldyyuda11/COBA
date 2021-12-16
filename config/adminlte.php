@@ -235,6 +235,16 @@ return [
             'url'  => '/users',
             'icon'  => 'fa fa-users',
         ],
+        [
+            'text' => 'Stories',
+            'url'  => '/stories',
+            'icon'  => 'fas fa-window-restore',
+        ],
+        [
+            'text' => 'Profile',
+            'url'  => '/profile',
+            'icon'  => 'fas fa-id-badge',
+        ],
     ],
 
     /*

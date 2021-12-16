@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 
 
 /*
@@ -34,8 +35,13 @@ Auth::routes();
         Route::middleware(['admin'])->group(function () {
             Route::resource('users', \App\Http\Controllers\UserController::class);
             Route::get('homeadmin',function () {
-                     return view('homeadmin');})->name('homeadmin');
-        Route::resource('homeadmin', \App\Http\Controllers\AdminController::class);
+                return view('homeadmin');})->name('homeadmin');
+            Route::resource('homeadmin', \App\Http\Controllers\AdminController::class);
+            Route::put('/updateuser', [UserController::class, 'update'])->name('updateuser');
+            Route::get('edituser/{id}',[UserController::class, 'showuser'])->name('edituser');
+            Route::delete('/userdelete/{id}', [UserController::class, 'destroy'])->name('deleteuser');
+            Route::resource('stories', \App\Http\Controllers\StoryController::class);
+            Route::get('profile',[AdminController::class, 'profile'])->name('profile');
         });
 
         Route::middleware(['penulis'])->group(function () {

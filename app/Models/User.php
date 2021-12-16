@@ -41,4 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function story()
+    {
+        return $this->hasOne(Story::class);
+        // OR return $this->hasOne('App\Phone');
+    }
+
 }

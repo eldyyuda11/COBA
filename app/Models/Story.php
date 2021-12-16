@@ -14,13 +14,19 @@ class Story extends Model
      *
      * @var array
      */
+
+    protected $primaryKey = 'id_story';
     protected $fillable = [
-        'id_story',
         'user_id',
         'image_path',
         'judul',
         'isi',
         'tanggal_publish'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
+
 
 }

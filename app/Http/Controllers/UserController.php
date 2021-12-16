@@ -89,6 +89,11 @@ class UserController extends Controller
             'user' => $user
         ]);
     }
+    public function showuser(Request $request,$id)
+    {
+        $id=User::find($id);
+        return Response()->json($id);
+    }
 
     /**
      * Update the specified resource in storage.
@@ -97,14 +102,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email' => 'required|email|unique:users,email,'.$request->id,
             'password' => 'sometimes|nullable|confirmed'
         ]);
-        $user = User::find($id);
+        $user = User::find($request->id);
         $user->name = $request->name;
         $user->email = $request->email;
         if ($request->password) $user->password = bcrypt($request->password);

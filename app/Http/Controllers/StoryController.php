@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
 use App\Models\Story;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class StoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,22 +13,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $totalP= User::where('role', 'penulis')->count();
-        $totalA= User::where('role', 'admin')->count();
-        $jan = story::whereMonth('tanggal_publish', '01')->count();
-        $feb = story::whereMonth('tanggal_publish', '02')->count();
-        $mar = story::whereMonth('tanggal_publish', '03')->count();
-        $apr = story::whereMonth('tanggal_publish', '04')->count();
-        $mei = story::whereMonth('tanggal_publish', '05')->count();
-        $jun = story::whereMonth('tanggal_publish', '06')->count();
-        $jul = story::whereMonth('tanggal_publish', '07')->count();
-        $agus = story::whereMonth('tanggal_publish', '08')->count();
-        $sep = story::whereMonth('tanggal_publish', '09')->count();
-        $okt = story::whereMonth('tanggal_publish', '10')->count();
-        $nov = story::whereMonth('tanggal_publish', '11')->count();
-        $des =story::whereMonth('tanggal_publish', '12')->count();
-
-        return view('home',compact('totalP','totalA','jan','feb','mar','apr','mei','jun','jul','agus','sep','okt','nov','des'));
+        $stories=Story::All();
+        return view('AdminArtikel.index', compact('stories'));
     }
 
     /**
@@ -50,7 +35,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -95,10 +80,9 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
-    public function profile(Request $request)
-    {
-        return view('profile');
+        $story = Story::find($id);
+        $story->delete();
+             return redirect()->route('stories.index')
+            ->with('success', 'Berhasil menghapus user');
     }
 }
